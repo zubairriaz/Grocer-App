@@ -1,0 +1,71 @@
+install these CLi tools
+npm i -D prettier tslint-config-prettier tslint-plugin-prettier
+npm i -D js-beautify
+npm i -D import-sort import-sort-cli import-sort-parser-typescript import-sort-style-module
+npm i -D tslint tslint-etc
+
+Xopy this at the end of the package.json file
+"importSort": {
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "module",
+      "options": {}
+    }
+  }
+
+  Add this to tsconfig.json
+  {
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier",
+    "tslint-etc"
+  ],
+  "rules": {
+    "prettier": true,
+
+
+Add a new file to the root of your project, named .jsbeautifyrc:
+.jsbeautifyrc
+{
+  "indent_size": 2,
+  "wrap_line_length": 90,
+  "language": {
+    "html": [
+      "html"
+    ]
+  }
+}
+
+Add a new file to the root of your project, named .prettierrc:
+. prettierrc
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 90,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "jsxBracketSameLine": true
+}
+
+Add a new file to the root of your project, named .prettierignore. Note that this file doesn't have curly brackets:
+. prettierignore
+**/*.html
+
+Edit the package.json scripts attribute to add style and style:fix commands:
+package.json
+...
+  "scripts": {
+    "style:fix": "import-sort --write \"**/{src,tests,e2e}/*.ts\" && prettier --write \"**/{src,tests,e2e}/*.{*css,ts}\" && js-beautify \"src/**/*.html\"",
+    "style": "import-sort -l \"**/{src,tests,e2e}/*.ts\" && prettier --check \"**/{src,tests,e2e}/*.{*css,ts}\"",  ...
+  }
+
+  Edit the package.json scripts attribute to replace lint and add lint:fix commands:
+package.json
+...
+  "scripts": {
+  ...
+    "lint": "tslint --config tslint.json --project . -e \"**/{test,polyfills}.ts\"",
+    "lint:fix": "tslint --config tslint.json --fix --project . -e \"**/{test,polyfills}.ts\"",
+  }
