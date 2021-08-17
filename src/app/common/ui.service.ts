@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Injectable } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,6 @@ export class UIService {
       message,
       action,
       config || { duration: 7000, politeness: 'assertive' }
-    );
+    )
   }
 }
