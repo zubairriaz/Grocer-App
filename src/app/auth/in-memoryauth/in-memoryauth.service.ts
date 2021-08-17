@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core'
-import { AuthService, IAuthStatus, IServerAuthResponse , defaultStatus} from '../auth.service'
 import { sign } from 'fake-jwt-sign'
 import { Observable, of, throwError } from 'rxjs'
-import { Role, PhoneType } from '../interfaces/auth'
+
+import {
+  AuthService,
+  IAuthStatus,
+  IServerAuthResponse,
+  defaultStatus,
+} from '../auth.service'
+import { PhoneType, Role } from '../interfaces/auth'
 import { User } from '../user/user'
 
 @Injectable()

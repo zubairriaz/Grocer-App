@@ -27,8 +27,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
     const compiled = fixture.nativeElement
-    expect(compiled.querySelector('.mat-display-1').textContent).toContain(
-      'Grocer App'
-    )
+    expect(compiled.querySelector('.mat-display-1').textContent).toContain('Grocer App')
   })
 })

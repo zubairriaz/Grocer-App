@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+
+import { AuthGuard } from '../auth/auth.guard'
+import { Role } from '../auth/interfaces/auth'
+import { HomeComponent } from './home/home.component'
 import { ManagerComponent } from './manager/manager.component'
 import { ReceiptComponent } from './receipt/receipt.component'
 import { UserComponent } from './user/user.component'
-import { HomeComponent } from './home/home.component'
-import { AuthGuard } from '../auth/auth.guard'
-import { Role } from '../auth/interfaces/auth'
 
 export const managerRoutes: Routes = [
   {

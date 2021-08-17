@@ -1,12 +1,12 @@
 import { visitAll } from '@angular/compiler'
 import { Injectable } from '@angular/core'
 import decode from 'jwt-decode'
-import { BehaviorSubject, Observable, throwError, pipe } from 'rxjs'
-import { catchError, filter, flatMap, map, tap, mergeMap } from 'rxjs/operators'
+import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs'
+import { catchError, filter, flatMap, map, mergeMap, tap } from 'rxjs/operators'
 
 import { Role } from '../auth/interfaces/auth'
-import { transformError } from '../common/common'
 import { User } from '../auth/user/user'
+import { transformError } from '../common/common'
 import { CacheService } from './cache.service'
 
 @Injectable()
@@ -29,8 +29,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
   ): Observable<IServerAuthResponse>
   protected abstract transformJwtToken(token): IAuthStatus
   protected abstract getCurrentUser(): Observable<User>
-  public abstract logout(clearToken:boolean):void
-
+  public abstract logout(clearToken: boolean): void
 
   constructor() {
     super()
@@ -38,7 +37,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
       this.logout(true)
     } else {
       this.currentStatus$.next(this.getAuthStatusFromToken())
-      setTimeout(()=>this.resumeCurrentUser$.subscribe())
+      setTimeout(() => this.resumeCurrentUser$.subscribe())
     }
   }
 

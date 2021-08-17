@@ -1,4 +1,4 @@
-import { IUser, IAddress, IName, IPhone, Role } from '../interfaces/auth'
+import { IAddress, IName, IPhone, IUser, Role } from '../interfaces/auth'
 
 export class User implements IUser {
   constructor(
@@ -27,7 +27,7 @@ export class User implements IUser {
       user._id,
       user.email,
       user.name,
-      user.role ,
+      user.role,
       user.picture,
       user.dateOfBirth,
       user.userStatus,

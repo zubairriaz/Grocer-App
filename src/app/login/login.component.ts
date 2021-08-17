@@ -1,13 +1,14 @@
+import { error } from '@angular/compiler/src/util'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { SubSink } from 'subsink'
-import { AuthService } from '../auth/auth.service'
-import { catchError, filter, tap } from 'rxjs/operators'
 import { combineLatest } from 'rxjs'
-import { UIService } from '../common/ui.service'
+import { catchError, filter, tap } from 'rxjs/operators'
+import { SubSink } from 'subsink'
+
+import { AuthService } from '../auth/auth.service'
 import { Role } from '../auth/interfaces/auth'
-import { error } from '@angular/compiler/src/util'
+import { UIService } from '../common/ui.service'
 
 @Component({
   selector: 'app-login',

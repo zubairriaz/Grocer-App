@@ -1,8 +1,10 @@
 import { AngularFireAuth } from '@angular/fire/auth'
+
 import { environment } from '../../environments/environment'
-import { AuthMode } from './interfaces/auth'
 import { InMemoryauthService } from '../auth/in-memoryauth/in-memoryauth.service'
 import { FirbaseService } from './firbase.service'
+import { AuthMode } from './interfaces/auth'
+
 export function authFactory(afAuth: AngularFireAuth) {
   switch (environment.authMode) {
     case AuthMode.InMemeory:
