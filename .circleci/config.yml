@@ -19,10 +19,7 @@ jobs:
           paths:
             - ~/.npm
       - run: npm run style
-      - run: npm run lint
       - run: npm run build:prod
-      - run: npm run test
-      - run: npm run e2e
       - run:
           name: Tar & Gzip compiled app
           command: tar zcf dist.tar.gz dist/grocer-app

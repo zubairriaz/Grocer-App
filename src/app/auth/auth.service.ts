@@ -1,8 +1,7 @@
-import { visitAll } from '@angular/compiler'
 import { Injectable } from '@angular/core'
 import decode from 'jwt-decode'
 import { BehaviorSubject, Observable, pipe, throwError } from 'rxjs'
-import { catchError, filter, flatMap, map, mergeMap, tap } from 'rxjs/operators'
+import { catchError, filter, map, mergeMap, tap } from 'rxjs/operators'
 
 import { Role } from '../auth/interfaces/auth'
 import { User } from '../auth/user/user'
@@ -46,7 +45,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
     const loginResponse$ = this.authProvider(email, password).pipe(
       map((value) => {
         this.setToken(value.accessToken)
-        let token = decode(value.accessToken)
+        const token = decode(value.accessToken)
         console.log(token)
         return this.transformJwtToken(token)
       }),

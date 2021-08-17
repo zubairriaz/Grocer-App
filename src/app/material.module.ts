@@ -10,7 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 
-const modules = [
+export const modules = [
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,

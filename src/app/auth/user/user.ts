@@ -1,4 +1,4 @@
-import { IAddress, IName, IPhone, IUser, Role } from '../interfaces/auth'
+import { IAddress, IName, IPhone, IUser } from '../interfaces/auth'
 
 export class User implements IUser {
   constructor(
@@ -13,6 +13,7 @@ export class User implements IUser {
     public address = { line1: '', city: '', state: '', zip: '' } as IAddress,
     public phones: IPhone[] = []
   ) {}
+  public fullName = this.getFullName()
 
   static Build(user: IUser) {
     console.log(user)
@@ -36,7 +37,6 @@ export class User implements IUser {
       user.phones
     )
   }
-  public fullName = this.getFullName()
   public getFullName(): string {
     if (!this.name) {
       return ''
@@ -48,7 +48,7 @@ export class User implements IUser {
   }
 
   toJSON(): object {
-    let obj = Object.assign(this)
+    const obj = Object.assign(this)
     delete obj._id
     delete obj.fullName
     return obj

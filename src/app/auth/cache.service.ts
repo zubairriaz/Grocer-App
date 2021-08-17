@@ -1,6 +1,6 @@
 export abstract class CacheService {
   protected setItem(key: string, data: object | string) {
-    let stringData = JSON.stringify(data)
+    const stringData = JSON.stringify(data)
     localStorage.setItem(key, stringData)
   }
 
