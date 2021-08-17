@@ -1,10 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import {ProfileComponent} from "./profile/profile.component"
+import {LogoutComponent} from "./logout/logout.component"
+import { AuthGuard } from './auth.guard'
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:"profile",component:ProfileComponent, canActivate:[AuthGuard]},
+  {path:"logout",component:LogoutComponent}
+
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

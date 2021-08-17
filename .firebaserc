@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "grocer-74109"
+  },
+  "targets": {
+    "grocer-74109": {
+      "hosting": {
+        "grocer-app": [
+          "grocer-74109"
+        ]
+      }
+    }
+  }
+}
