@@ -1,0 +1,33 @@
+<mat-toolbar
+  color="primary"
+  *ngIf="{
+    status: authService.currentStatus$ | async,
+    user: authService.currentUser$ | async
+  } as auth"
+>
+  <button mat-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a mat-button routerLink="/home">
+    <mat-icon svgIcon="grocer"></mat-icon><span class="mat-display-1">Grocer App</span>
+  </a>
+  <div class="flex-spacer"></div>
+  <button
+    *ngIf="auth?.status?.isAuthenticated"
+    mat-mini-fab
+    matTooltip="profile"
+    routerLink="auth/profile"
+  >
+    <img *ngIf="auth?.user?.picture" class="image-cropper" [src]="auth?.user?.picture" />
+    <mat-icon *ngIf="!auth?.user?.picture">account_circle</mat-icon>
+  </button>
+  <button
+    *ngIf="auth?.status?.isAuthenticated"
+    mat-mini-fab
+    matTooltip="logout"
+    routerLink="auth/logout"
+  >
+    <mat-icon>lock_open</mat-icon>
+  </button>
+</mat-toolbar>
+<router-outlet></router-outlet>

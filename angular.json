@@ -6,39 +6,39 @@
     "grocer-app": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/grocer-app",
+      "sourceRoot": "apps/grocer-app/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/grocer-app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/grocer-app",
+            "index": "apps/grocer-app/src/index.html",
+            "main": "apps/grocer-app/src/main.ts",
+            "polyfills": "apps/grocer-app/src/polyfills.ts",
+            "tsConfig": "apps/grocer-app/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/android-chrome-192x192.png",
-              "src/favicon-16x16.png",
-              "src/mstile-310x150.png",
-              "src/android-chrome-512x512.png",
-              "src/favicon-32x32.png",
-              "src/mstile-310x310.png",
-              "src/apple-touch-icon.png",
-              "src/manifest.json",
-              "src/mstile-70x70.png",
-              "src/browserconfig.xml",
-              "src/mstile-144x144.png",
-              "src/safari-pinned-tab.svg",
-              "src/mstile-150x150.png"
+              "apps/grocer-app/src/favicon.ico",
+              "apps/grocer-app/src/assets",
+              "apps/grocer-app/src/android-chrome-192x192.png",
+              "apps/grocer-app/src/favicon-16x16.png",
+              "apps/grocer-app/src/mstile-310x150.png",
+              "apps/grocer-app/src/android-chrome-512x512.png",
+              "apps/grocer-app/src/favicon-32x32.png",
+              "apps/grocer-app/src/mstile-310x310.png",
+              "apps/grocer-app/src/apple-touch-icon.png",
+              "apps/grocer-app/src/manifest.json",
+              "apps/grocer-app/src/mstile-70x70.png",
+              "apps/grocer-app/src/browserconfig.xml",
+              "apps/grocer-app/src/mstile-144x144.png",
+              "apps/grocer-app/src/safari-pinned-tab.svg",
+              "apps/grocer-app/src/mstile-150x150.png"
             ],
             "styles": [
-              "src/grocer-app-theme.scss",
-              "src/styles.css"
+              "apps/grocer-app/src/grocer-app-theme.scss",
+              "apps/grocer-app/src/styles.css"
             ],
             "scripts": []
           },
@@ -46,8 +46,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/grocer-app/src/environments/environment.ts",
+                  "with": "apps/grocer-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -93,17 +93,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "main": "apps/grocer-app/src/test.ts",
+            "polyfills": "apps/grocer-app/src/polyfills.ts",
+            "tsConfig": "apps/grocer-app/tsconfig.spec.json",
+            "karmaConfig": "apps/grocer-app/karma.conf.js",
+            "assets": ["apps/grocer-app/src/favicon.ico", "apps/grocer-app/src/assets"],
+            "styles": ["apps/grocer-app/src/styles.css"],
             "scripts": []
           }
         },
@@ -111,13 +106,10 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/grocer-app/tsconfig.app.json",
+              "apps/grocer-app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -137,7 +129,85 @@
           "options": {}
         }
       }
+    },
+    "grocer-app-e2e": {
+      "root": "apps/grocer-app-e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/grocer-app-e2e/protractor.conf.js",
+            "devServerTarget": "grocer-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "grocer-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/grocer-app-e2e/tsconfig.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "server": {
+      "root": "apps/server",
+      "sourceRoot": "apps/server/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/server",
+            "main": "apps/server/src/main.ts",
+            "tsConfig": "apps/server/tsconfig.app.json",
+            "assets": ["apps/server/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/server/src/environments/environment.ts",
+                  "with": "apps/server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "server:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/server/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/server"],
+          "options": {
+            "jestConfig": "apps/server/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
-  "defaultProject": "grocer-app"
+  "defaultProject": "grocer-app",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  }
 }
